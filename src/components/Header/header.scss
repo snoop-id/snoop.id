@@ -1,0 +1,154 @@
+header {
+    position: fixed;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    width: 100%;
+    height: 60px;
+    z-index: 10;
+    backdrop-filter: blur(6px);
+    box-shadow: inset 0 -1px 0 0 var(--gray);
+
+    >div {
+        @include dc;
+        justify-content: space-between;
+        gap: 24px;
+        grid-column: 2 / 12;
+        height: 100%;
+        width: 100%;
+
+        @include W(1440px) {
+            grid-column: 1 / -1;
+            padding: 0 12px;
+        }
+
+        a.brand {
+            @include dc;
+            gap: 12px;
+            white-space: nowrap;
+
+            h1 {
+                font-size: 16px;
+                font-weight: 600;
+                color: var(--primary);
+                font-family: "Poppins", sans-serif;
+
+                span {
+                    color: var(--foreground);
+                }
+            }
+        }
+
+        .links {
+            @include dc;
+            gap: 18px;
+            flex: 1;
+
+            @include W(1024px) {
+                display: none;
+            }
+
+            a {
+                font-size: 14px;
+                font-family: "Noto Sans", sans-serif;
+                color: hsl(var(--muted-foreground));
+                white-space: nowrap;
+
+                &.active {
+                    color: var(--foreground);
+                }
+            }
+        }
+
+        .actions {
+            @include dc;
+
+            @include W(768px) {
+                > .connect-btn-wrapper {
+                    display: none;
+                }
+            }
+
+            .small-buttons {
+                display: flex;
+                align-items: center;
+                margin-right: 12px;
+
+                @include W(768px) {
+                    margin-right: 0;
+                }
+            }
+
+            button {
+                &.hamburger-btn {
+                    display: none;
+
+                    @include W(1024px) {
+                        display: flex;
+                    }
+
+                    @include W(768px) {
+                        width: 40px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+$hamburger-width: 260px;
+.hamburger-menu {
+    display: none;
+    position: fixed;
+    justify-content: end;
+    left: 0;
+    top: 0;
+    width: 100dvw;
+    height: 100dvh;
+    z-index: 999;
+    background: rgba(0, 0, 0, 0.4);
+
+    @include W(1024px) {
+        display: flex;
+    }
+
+    .wrapper {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        height: 100%;
+        width: $hamburger-width;
+        background: var(--secondary);
+        padding: 24px;
+        animation-name: reveal;
+        animation-duration: 0.2s;
+        animation-timing-function: ease-out;
+        animation-iteration-count: 1;
+
+        a {
+            color: #1c1c1c;
+            font-weight: 500;
+            font-size: 15px;
+        }
+    }
+
+    .close {
+        position: absolute;
+        z-index: 5;
+        right: 10px;
+        bottom: 10px;
+        font-size: 24px;
+        color: #1c1c1c;
+        cursor: pointer;
+    }
+}
+
+@keyframes reveal {
+    0% {
+        right: -$hamburger-width;
+    }
+    100% {
+        right: 0;
+        position: relative;
+    }
+}

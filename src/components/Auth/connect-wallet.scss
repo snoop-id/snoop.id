@@ -1,0 +1,21 @@
+// Rainbow Kit overrides
+.connect-btn-wrapper {
+    @include W(1024px) {
+        > div {
+            flex-direction: column;
+        }
+    }
+
+    button {
+        background-color: var(--primary) !important;
+        border-radius: 6px !important;
+        font-weight: 500 !important;
+        font-size: 14px !important;
+
+        > div {
+            background-color: transparent !important;
+            border: 0 !important;
+            font-weight: 500 !important;
+        }
+    }
+}

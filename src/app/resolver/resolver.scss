@@ -1,0 +1,14 @@
+#resolver {
+    padding-top: 24px;
+
+    .resolver-form {
+        display: flex;
+        gap: 6px;
+        width: 50%;
+        margin: 24px 0 6px 0;
+    }
+
+    p.error {
+        color: red;
+    }
+}
