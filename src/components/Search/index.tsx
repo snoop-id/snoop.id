@@ -42,6 +42,11 @@ export default function Search() {
                     value={domain || ""}
                     placeholder="spaceid.bnb"
                     onChange={e => setDomain(e.target.value)}
+                    onKeyDown={e => {
+                        if (e.key === "Enter") {
+                            submit();
+                        }
+                    }}
                 />
                 <Button onClick={submit}>
                     <RiSendPlaneFill />

@@ -15,6 +15,7 @@ export default function Home() {
             </p>
             <div className="domain-table-wrapper">
                 <Suspense fallback={<Loading />}>
+                    {/* @ts-expect-error Async Server Component */}
                     <DomainTable />
                 </Suspense>
             </div>

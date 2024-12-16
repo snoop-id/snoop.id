@@ -14,8 +14,10 @@ export default function SearchLayout({
         <div id="search">
             <h1>Search</h1>
             <p>Search for a domain to see its details and history.</p>
+
             <Search />
             <hr />
+
             <div className="search-wrapper">
                 <Suspense fallback={<Skeleton />}>{children}</Suspense>
             </div>
