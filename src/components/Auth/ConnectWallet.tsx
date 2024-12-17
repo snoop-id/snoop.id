@@ -2,7 +2,7 @@
 
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 
-import './connect-wallet.scss';
+import "./connect-wallet.scss";
 
 export default function ConnectWallet() {
     return (

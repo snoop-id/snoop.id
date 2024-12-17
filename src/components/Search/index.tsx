@@ -16,8 +16,8 @@ export default function Search() {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        if (pathname.startsWith("/search/")) {
-            setDomain(pathname.replace("/search/", ""));
+        if (pathname.startsWith("/search")) {
+            setDomain(pathname.replace("/search", ""));
         }
     }, [pathname]);
 
@@ -31,7 +31,7 @@ export default function Search() {
             return;
         }
 
-        router.push(`/search/${domain}`);
+        router.push(`/search?q=${domain}`);
     }
 
     return (

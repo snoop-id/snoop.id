@@ -1,5 +1,3 @@
-"use cache";
-
 import {
     Table,
     TableBody,
@@ -8,14 +6,37 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-import { formatDate, getTraitValue } from "@/lib/utils";
 import { TLD_Chain } from "@/lib/domains";
+import { formatDate, getTraitValue } from "@/lib/utils";
+
+import { MdDoNotDisturbAlt } from "react-icons/md";
 
 export default async function SearchQuery({ domain }: { domain: string }) {
+    if (!domain) {
+        return (
+            <p className="error">
+                Domain is required. Please enter a domain to search.
+            </p>
+        );
+    }
+
+    if (domain.indexOf(".") === -1) {
+        return <p className="error">Invalid domain</p>;
+    }
+
     const response = await fetch(
         `${process.env.NEXT_PUBLIC_INTERNAL_API_URL}/domains?domain=${domain}`,
+        {
+            next: {
+                revalidate: 3600,
+            },
+        },
     );
     const metadata = await response.json();
+
+    if (!metadata?.name) {
+        return <p className="error">Domain not found</p>;
+    }
 
     const domainName = metadata.name.split(".")[0];
     const tld = metadata.name.split(".")[1] as keyof typeof TLD_Chain;
@@ -75,7 +96,7 @@ export default async function SearchQuery({ domain }: { domain: string }) {
             <div className="details">
                 <div>
                     <h3>Owner</h3>
-                    <p>{metadata.address}</p>
+                    <p>{metadata?.address || <MdDoNotDisturbAlt />}</p>
                 </div>
                 <div>
                     <h3>Chain</h3>

@@ -8,7 +8,7 @@ header {
     backdrop-filter: blur(6px);
     box-shadow: inset 0 -1px 0 0 var(--gray);
 
-    >div {
+    > div {
         @include dc;
         justify-content: space-between;
         gap: 24px;

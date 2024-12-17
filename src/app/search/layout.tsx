@@ -1,7 +1,4 @@
-import { Suspense } from "react";
-
 import Search from "@/components/Search";
-import { Skeleton } from "@/components/ui/skeleton";
 
 import "./search.scss";
 
@@ -18,9 +15,7 @@ export default function SearchLayout({
             <Search />
             <hr />
 
-            <div className="search-wrapper">
-                <Suspense fallback={<Skeleton />}>{children}</Suspense>
-            </div>
+            <div className="search-wrapper">{children}</div>
         </div>
     );
 }
